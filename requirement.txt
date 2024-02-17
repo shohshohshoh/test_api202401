@@ -1,0 +1,19 @@
+# 必要なライブラリをインストール
+!pip install streamlit mecab-python3 wordcloud unidic-lite
+
+# 共起ネットワークの視覚化に必要な追加ライブラリ
+!pip install networkx matplotlib chardet
+
+# MeCabとその辞書のインストール
+!apt-get -q -y install sudo mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
+
+# ディレクトリ場所確認
+dicnm = os.getcwd()
+
+# フォントファイルのダウンロードと解凍
+!wget -O ipaexg00401.zip https://moji.or.jp/wp-content/ipafont/IPAexfont/ipaexg00401.zip
+!unzip -o -q ipaexg00401.zip -d dicnm
+!apt-get -y install fonts-ipaexfont
+
+# キャッシュのクリア
+!rm -rf "/root/.cache/matplotlib"
