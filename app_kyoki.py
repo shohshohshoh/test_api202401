@@ -121,10 +121,12 @@ def generate_cooccurrence_network(text, font_path):
 
             print('step2 pass')
 
-            while node:  # ノードがNoneになるまでループ
+           while node:  # ノードがNoneになるまでループ
               if node.surface.strip() != "":  # surfaceが空文字列でない場合（空白ノードを除外）
-                words.append(node.surface)  # 単語をリストに追加
-                word_count[node.surface] += 1
+                pos = node.feature.split(",")[0]  # 品詞情報を取得
+                if len(node.surface) > 1 and pos != "記号":  # 1文字の単語と記号を除外
+                  words.append(node.surface)  # 単語をリストに追加
+                  word_count[node.surface] += 1
               node = node.next  # 次のノードに移動
 
             # 出現頻度が5回以上の単語のみを対象とする
