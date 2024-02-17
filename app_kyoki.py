@@ -14,7 +14,7 @@ import chardet  # エンコーディング検出用
 st.set_page_config(page_title="テキスト可視化", layout="wide", initial_sidebar_state="expanded")
 
 # フォントのパスを指定
-font_path = "path/to/ipaexg.ttf"
+font_path = "ipaexg.ttf"
 
 # タイトルの設定
 st.title("テキスト可視化")
