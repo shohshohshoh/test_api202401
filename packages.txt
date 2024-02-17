@@ -1,0 +1,10 @@
+sudo
+mecab
+libmecab-dev
+mecab-ipadic-utf8
+git
+make
+curl
+xz-utils
+file
+fonts-ipaexfont
