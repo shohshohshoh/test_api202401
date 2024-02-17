@@ -1,7 +1,0 @@
-streamlit
-mecab-python3
-wordcloud
-unidic-lite
-networkx
-matplotlib
-chardet
