@@ -147,7 +147,20 @@ def generate_cooccurrence_network(text, font_path):
               if G.has_edge(word1, word2):
                  G[word1][word2]['weight'] += 1
               else:
-                 G.add_edge(word1, word2, weight=1)
+                 # 共起の閾値を設定（例：共起回数が2回以上ならエッジを追加）
+                 initial_weight = 2
+                 G.add_edge(word1, word2, weight=initial_weight)
+
+            # 共起ネットワークから特定の閾値以下のエッジを除外する
+            threshold = 2  # 閾値をより低く設定
+            for u, v, data in list(G.edges(data=True)):
+               if data['weight'] < threshold:
+                  G.remove_edge(u, v)
+
+            # 閾値以下のエッジを除外した後に孤立したノードを削除
+            isolated = list(nx.isolates(G))
+            G.remove_nodes_from(isolated)
+
 
             print('step4 pass')
 
