@@ -129,8 +129,14 @@ def generate_cooccurrence_network(text, font_path):
                   word_count[node.surface] += 1
               node = node.next  # 次のノードに移動
 
-            # 出現頻度が4回以上の単語のみを対象とする
-            filtered_words = [word for word in words if word_count[word] >= 4]
+            # word_count辞書の最大値を確認
+            max_word_count = max(word_count.values())
+
+            # 最大値が30以上の場合、閾値を10に設定。それ以外の場合は、閾値を2に設定。
+            threshold = 20 if max_word_count >= 30 else 2
+
+            # 閾値に基づいて単語をフィルタリング
+            filtered_words = [word for word in words if word_count[word] >= threshold]
              
             # 共起ネットワークを構築
             G = nx.Graph()
