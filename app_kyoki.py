@@ -124,18 +124,14 @@ def generate_cooccurrence_network(text, font_path):
             while node:  # ノードがNoneになるまでループ
               if node.surface.strip() != "":  # surfaceが空文字列でない場合（空白ノードを除外）
                 pos = node.feature.split(",")[0]  # 品詞情報を取得
-                if len(node.surface) > 1 and pos != "記号":  # 1文字の単語と記号を除外
+                if len(node.surface) > 1 and pos in ["記号""名詞", "形容詞", "動詞", "副詞"] :  # 1文字の単語と記号を除外
                   words.append(node.surface)  # 単語をリストに追加
                   word_count[node.surface] += 1
               node = node.next  # 次のノードに移動
 
             # 出現頻度が5回以上の単語のみを対象とする
             filtered_words = [word for word in words if word_count[word] >= 5]
-                
-            # ここでフィルタリングされた単語リストを確認
-            st.write("フィルタリングされた単語リスト:", filtered_words)
-                
-
+             
             # 共起ネットワークを構築
             G = nx.Graph()
 
