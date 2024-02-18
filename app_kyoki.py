@@ -131,6 +131,10 @@ def generate_cooccurrence_network(text, font_path):
 
             # 出現頻度が5回以上の単語のみを対象とする
             filtered_words = [word for word in words if word_count[word] >= 5]
+                
+            # ここでフィルタリングされた単語リストを確認
+            st.write("フィルタリングされた単語リスト:", filtered_words)
+                
 
             # 共起ネットワークを構築
             G = nx.Graph()
