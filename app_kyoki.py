@@ -132,8 +132,8 @@ def generate_cooccurrence_network(text, font_path):
             # word_count辞書の最大値を確認
             max_word_count = max(word_count.values())
 
-            # 最大値が30以上の場合、閾値を10に設定。それ以外の場合は、閾値を2に設定。
-            threshold = 20 if max_word_count >= 30 else 2
+            # 最大値が30以上の場合、閾値を10に設定。それ以外の場合は、閾値を1に設定。
+            threshold = 20 if max_word_count >= 30 else 1
 
             # 閾値に基づいて単語をフィルタリング
             filtered_words = [word for word in words if word_count[word] >= threshold]
